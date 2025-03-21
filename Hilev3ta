@@ -1,0 +1,168 @@
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- ScreenGui oluştur
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+
+-- Ana Frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 300, 0, 450) -- Daha büyük boyut
+mainFrame.Position = UDim2.new(0.5, -150, 0.5, -225)
+mainFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+mainFrame.BorderSizePixel = 2
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
+
+-- Başlık
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 30)
+title.Text = "TA SCRIPTS V7 🇹🇷"
+title.TextSize = 18
+title.TextColor3 = Color3.new(1, 1, 1)
+title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+title.Font = Enum.Font.SourceSansBold
+title.Parent = mainFrame
+
+-- Buton oluşturma fonksiyonu
+local function createButton(name, posY, parent)
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(1, 0, 0, 25)
+    button.Position = UDim2.new(0, 0, 0, posY)
+    button.Text = name
+    button.TextSize = 16
+    button.Font = Enum.Font.SourceSans
+    button.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    button.TextColor3 = Color3.new(1, 1, 1)
+    button.Parent = parent
+    return button
+end
+
+-- Sekme oluşturma fonksiyonu
+local function createTab(name, posY)
+    local tabButton = createButton(name, posY, mainFrame)
+    local tabFrame = Instance.new("Frame")
+    tabFrame.Size = UDim2.new(1, 0, 0, 350)
+    tabFrame.Position = UDim2.new(0, 0, 0, 35)
+    tabFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    tabFrame.Visible = false
+    tabFrame.Parent = mainFrame
+
+    tabButton.MouseButton1Click:Connect(function()
+        for _, child in pairs(mainFrame:GetChildren()) do
+            if child:IsA("Frame") and child ~= tabFrame then
+                child.Visible = false
+            end
+        end
+        tabFrame.Visible = true
+    end)
+
+    return tabFrame
+end
+
+-- "TEAM GEÇME" sekmesi
+local teamTab = createTab("TEAM GEÇME", 35)
+
+-- "ASKERİ İNZİBAT" butonu
+local askeriInzibatButton = createButton("ASKERİ İNZİBAT", 0, teamTab)
+askeriInzibatButton.MouseButton1Click:Connect(function()
+    local team = game:GetService("Teams"):FindFirstChild("Askeri İnzibat")
+    if team then 
+        player.Team = team 
+    end
+end)
+
+-- "SUBAY SİLAH" butonu (Takım şartı kaldırıldı)
+local subaySilahButton = createButton("SUBAY SİLAH", 30, teamTab)
+subaySilahButton.MouseButton1Click:Connect(function()
+    local tool = game:GetService("ReplicatedStorage"):FindFirstChild("Remington 870")
+    if tool then 
+        tool:Clone().Parent = player.Backpack
+    end
+end)
+
+-- "KAN EFEKTİ ÇIKAR" butonu
+local kanEfektiButton = createButton("KAN EFEKTİ ÇIKAR", 60, teamTab)
+kanEfektiButton.MouseButton1Click:Connect(function()
+    local kanEfektScript = player.PlayerScripts:FindFirstChild("KanEfektleri")
+    if kanEfektScript then
+        kanEfektScript.Disabled = false
+    end
+end)
+
+-- "BİZDE ÇIKSIN KAN" butonu
+local bizdeKanButton = createButton("BİZDE ÇIKSIN KAN", 90, teamTab)
+bizdeKanButton.MouseButton1Click:Connect(function()
+    local char = player.Character
+    if char then
+        local kanEfekt = Instance.new("Part")
+        kanEfekt.Size = Vector3.new(1, 1, 1)
+        kanEfekt.Position = char.HumanoidRootPart.Position + Vector3.new(0, -2, 0)
+        kanEfekt.Color = Color3.fromRGB(150, 0, 0)
+        kanEfekt.Material = Enum.Material.SmoothPlastic
+        kanEfekt.Anchored = true
+        kanEfekt.Parent = workspace
+        task.wait(5)
+        kanEfekt:Destroy()
+    end
+end)
+
+-- "KOMUT LOGS BAKMA" butonu
+local komutLogsButton = createButton("KOMUT LOGS BAKMA", 120, teamTab)
+komutLogsButton.MouseButton1Click:Connect(function()
+    local komutLogsGui = game:GetService("StarterGui"):FindFirstChild("AdminTA"):FindFirstChild("KomutLogs")
+    if komutLogsGui then 
+        komutLogsGui.Enabled = true 
+    end
+end)
+
+-- Yeni Sekme: KIYAFET DEĞİŞTİRME
+local kiyafetTab = createTab("KIYAFET DEĞİŞTİRME", 175)
+local kiyafet1Button = createButton("KIYAFET 1", 0, kiyafetTab)
+kiyafet1Button.MouseButton1Click:Connect(function()
+    local char = player.Character
+    if char then
+        local clothes = Instance.new("Shirt")
+        clothes.ShirtTemplate = "http://www.roblox.com/asset/?id=12985717855"
+        clothes.Parent = char
+    end
+end)
+
+-- Yeni Sekme: TROLL
+local trollTab = createTab("TROLL", 210)
+local boButton = createButton("BO", 0, trollTab)
+boButton.MouseButton1Click:Connect(function()
+    local tool = game:GetService("ReplicatedStorage"):FindFirstChild("ToolName") -- Burada doğru tool ismini yazmalısınız
+    if tool then 
+        tool:Clone().Parent = player.Backpack
+    end
+end)
+
+-- Yeni Sekme: FARM
+local farmTab = createTab("FARM", 245)
+local carkFarmButton = createButton("ÇARK FARM", 0, farmTab)
+carkFarmButton.MouseButton1Click:Connect(function()
+    local part = Instance.new("Part")
+    part.Size = Vector3.new(500, 10, 500)
+    part.Position = Vector3.new(13915, 1411, -1751)
+    part.Anchored = true
+    part.Parent = workspace
+
+    local char = player.Character
+    if char and char:FindFirstChild("HumanoidRootPart") then
+        char.HumanoidRootPart.CFrame = CFrame.new(part.Position + Vector3.new(0, 5, 0))
+    end
+
+    task.delay(49 * 60, function()
+        if char and char:FindFirstChild("HumanoidRootPart") then
+            char.HumanoidRootPart.CFrame = CFrame.new(0, 10, 0)
+        end
+    end)
+end)
+
+-- Sekmelerin görünürlüğünü ayarlama
+teamTab.Visible = true
+kiyafetTab.Visible = false
+trollTab.Visible = false
+farmTab.Visible = false
