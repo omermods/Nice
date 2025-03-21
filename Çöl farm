@@ -1,0 +1,92 @@
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TeleportButton = Instance.new("TextButton")
+local ScriptButton = Instance.new("TextButton")
+local SkyboxButton = Instance.new("TextButton")
+local SoundButton = Instance.new("TextButton")
+
+-- **GUI Ayarları**
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Frame.Size = UDim2.new(0, 200, 0, 250)
+Frame.Position = UDim2.new(0.5, -100, 0.5, -125)
+Frame.Active = true
+Frame.Draggable = true
+
+local function createButton(button, text, position)
+    button.Parent = Frame
+    button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    button.Size = UDim2.new(0, 180, 0, 50)
+    button.Position = UDim2.new(0, 10, 0, position)
+    button.Text = text
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Font = Enum.Font.SourceSansBold
+    button.TextSize = 14
+end
+
+-- **Butonları oluştur**
+createButton(TeleportButton, "YAVAŞ TELEPORT", 10)
+createButton(ScriptButton, "SCRIPT ÇALIŞTIR", 70)
+createButton(SkyboxButton, "GÖKYÜZÜ DEĞİŞTİR", 130)
+createButton(SoundButton, "SES ÇAL", 190)
+
+-- **Bypasslı Yavaş Teleport Fonksiyonu**
+local function slowTeleport(targetPosition)
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local hrp = character.HumanoidRootPart
+        local distance = (hrp.Position - targetPosition).Magnitude  
+        local steps = math.ceil(distance / 5)  
+        local stepSize = (targetPosition - hrp.Position) / steps  
+
+        for i = 1, steps do
+            hrp.CFrame = hrp.CFrame + stepSize  
+            task.wait(0.1)  
+        end
+    end
+end
+
+-- **TELEPORT Butonu Çalıştır**
+TeleportButton.MouseButton1Click:Connect(function()
+    local target = Vector3.new(325.713715, 3.63179278, 136.996201)  
+    slowTeleport(target)
+end)
+
+-- **SCRIPT ÇALIŞTIR Butonu Çalıştır**
+ScriptButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Kill-NPCs-or-bots-25445"))()
+end)
+
+-- **GÖKYÜZÜ DEĞİŞTİR Butonu Çalıştır**
+SkyboxButton.MouseButton1Click:Connect(function()
+    local sky = Instance.new("Sky")
+    sky.Name = "CustomSky"
+    sky.Parent = game.Lighting
+    sky.SkyboxBk = "rbxassetid://348905349"
+    sky.SkyboxDn = "rbxassetid://348905349"
+    sky.SkyboxFt = "rbxassetid://348905349"
+    sky.SkyboxLf = "rbxassetid://348905349"
+    sky.SkyboxRt = "rbxassetid://348905349"
+    sky.SkyboxUp = "rbxassetid://348905349"
+end)
+
+-- **SES ÇAL Butonu Çalıştır**
+SoundButton.MouseButton1Click:Connect(function()
+    local sound = Instance.new("Sound", game.Workspace)
+    sound.SoundId = "rbxassetid://247893371"
+    sound.Looped = true
+    sound.Volume = 3
+    sound:Play()
+end)
+
+-- **Tool Otomatik Alma Engelleme**
+local player = game.Players.LocalPlayer
+player.Character.ChildAdded:Connect(function(child)
+    if child:IsA("Tool") then
+        task.wait()
+        player.Backpack:AddItem(child)
+    end
+end)
