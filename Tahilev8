@@ -1,0 +1,162 @@
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UIStroke = Instance.new("UIStroke")
+local UICorner = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+local UIListLayout = Instance.new("UIListLayout")
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Frame.Position = UDim2.new(0.3, 0, 0.2, 0)
+Frame.Size = UDim2.new(0, 250, 0, 450)
+Frame.Active = true
+Frame.Draggable = true
+
+UIStroke.Parent = Frame
+UIStroke.Thickness = 2
+UIStroke.Color = Color3.fromRGB(255, 255, 255)
+
+UICorner.Parent = Frame
+UICorner.CornerRadius = UDim.new(0, 15)
+
+UIGradient.Parent = Frame
+UIGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+UIGradient.Rotation = 45
+
+UIListLayout.Parent = Frame
+UIListLayout.Padding = UDim.new(0, 5)
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+
+local function createButton(text, callback)
+    local Button = Instance.new("TextButton")
+    local UICornerBtn = Instance.new("UICorner")
+
+    Button.Parent = Frame
+    Button.Size = UDim2.new(0, 200, 0, 40)
+    Button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Button.Text = text
+    Button.Font = Enum.Font.GothamBold
+    Button.TextSize = 14
+
+    UICornerBtn.Parent = Button
+    UICornerBtn.CornerRadius = UDim.new(0, 10)
+
+    Button.MouseButton1Click:Connect(callback)
+
+    return Button
+end
+
+-- **OF-10 VERİCİ Butonu**
+createButton("OF-10 VERİCİ (FE DEĞİL)", function()
+    local player = game:GetService("Players").LocalPlayer
+    local leaderstats = player:FindFirstChild("leaderstats")
+    
+    if leaderstats then
+        local rutbe = leaderstats:FindFirstChild("Rütbe")
+        if rutbe then
+            player.Character = rutbe.Value
+        end
+    end
+end)
+
+-- **ASKERÎ İNZİBAT GEÇME Butonu**
+createButton("ASKERÎ İNZİBAT GEÇME", function()
+    local player = game:GetService("Players").LocalPlayer
+    local teams = game:GetService("Teams")
+    
+    if teams:FindFirstChild("Askeri İnzibat") then
+        player.Team = teams["Askeri İnzibat"]
+        
+        -- Tool ekleme
+        local backpack = player:FindFirstChild("Backpack")
+        if backpack then
+            for _, toolName in pairs({"Detain", "M4A4", "Model"}) do
+                local tool = teams["Askeri İnzibat"]:FindFirstChild(toolName)
+                if tool then
+                    tool:Clone().Parent = backpack
+                end
+            end
+        end
+    end
+end)
+
+-- **NOEL BABA OLMA .D Butonu**
+createButton("NOEL BABA OLMA .D", function()
+    local player = game:GetService("Players").LocalPlayer
+    local character = player.Character
+
+    if character then
+        for _, obj in pairs(character:GetChildren()) do
+            if obj:IsA("Accessory") or obj:IsA("Shirt") or obj:IsA("Pants") then
+                obj:Destroy()
+            end
+        end
+
+        local newShirt = Instance.new("Shirt", character)
+        newShirt.ShirtTemplate = "http://www.roblox.com/asset/?id=6038263968"
+
+        local newPants = Instance.new("Pants", character)
+        newPants.PantsTemplate = "http://www.roblox.com/asset/?id=6038265734"
+    end
+end)
+
+-- **OPERASYON NPC SOYMA .D Butonu**
+createButton("OPERASYON NPC SOYMA .D", function()
+    local npc = workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("GorevNPC")
+    
+    if npc then
+        if npc:FindFirstChild("Shirt") then
+            npc.Shirt:Destroy()
+        end
+        if npc:FindFirstChild("Pants") then
+            npc.Pants:Destroy()
+        end
+    end
+end)
+
+-- **TÜM TOOL ELİNE ALMA Butonu**
+createButton("TÜM TOOL ELİNE ALMA", function()
+    local alButton = createButton("AL", function()
+        local player = game:GetService("Players").LocalPlayer
+        local backpack = player:FindFirstChild("Backpack")
+
+        if backpack then
+            for _, tool in pairs(backpack:GetChildren()) do
+                if tool:IsA("Tool") then
+                    player.Character.Humanoid:EquipTool(tool)
+                end
+            end
+        end
+    end)
+end)
+
+-- **ÇÖL FARM (BUGSUZ) Butonu**
+createButton("ÇÖL FARM (BUGSUZ)", function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-kill-npc-gui-27774"))()
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "UYARI";
+        Text = "BU SADECE ÖNE YÜRÜ NPC YANINA!";
+        Duration = 5
+    })
+end)
+
+-- **FE BYPASS Butonu**
+createButton("FE BYPASS", function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fe-Bypass-By-Goodrc7-30721"))()
+end)
+
+-- **TOPKEK 💀 Butonu**
+createButton("TOPKEK 💀", function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-topk3k-30686"))()
+end)
+
+-- **FE BYPASS (2) Butonu**
+createButton("FE BYPASS (2)", function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-901671-febypass-29978"))()
+end)
