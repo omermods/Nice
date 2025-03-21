@@ -1,0 +1,303 @@
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+
+-- Ana Frame oluştur
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 300, 0, 700)
+mainFrame.Position = UDim2.new(0, 10, 0, 10)
+mainFrame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
+
+-- Başlık
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 50)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.Text = "TA SCRIPTS V6 🔥"
+title.TextSize = 24
+title.TextColor3 = Color3.new(1, 1, 1)
+title.BackgroundTransparency = 1
+title.Font = Enum.Font.SourceSansBold
+title.Parent = mainFrame
+
+-- Sekme Frame (Sürüklenebilir Sekme Bölgesi)
+local tabFrame = Instance.new("Frame")
+tabFrame.Size = UDim2.new(0, 300, 0, 500)
+tabFrame.Position = UDim2.new(0, 10, 0, 60)
+tabFrame.BackgroundColor3 = Color3.new(0.25, 0.25, 0.25)
+tabFrame.BorderSizePixel = 0
+tabFrame.Parent = screenGui
+tabFrame.Active = true
+tabFrame.Draggable = true
+
+-- Sekme Başlığı
+local tabTitle = Instance.new("TextLabel")
+tabTitle.Size = UDim2.new(1, 0, 0, 50)
+tabTitle.Position = UDim2.new(0, 0, 0, 0)
+tabTitle.Text = "SEKME YERİ"
+tabTitle.TextSize = 22
+tabTitle.TextColor3 = Color3.new(1, 1, 1)
+tabTitle.BackgroundTransparency = 0.3
+tabTitle.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+tabTitle.Font = Enum.Font.SourceSansBold
+tabTitle.Parent = tabFrame
+
+-- Sekme Butonları
+local buttonEresim = Instance.new("TextButton")
+buttonEresim.Size = UDim2.new(0, 250, 0, 50)
+buttonEresim.Position = UDim2.new(0, 25, 0, 60)
+buttonEresim.Text = "ERESİM"
+buttonEresim.TextSize = 20
+buttonEresim.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonEresim.Parent = tabFrame
+buttonEresim.MouseButton1Click:Connect(function()
+    -- Eresim işlevi burada yapılabilir
+end)
+
+local buttonSekmeler = Instance.new("TextButton")
+buttonSekmeler.Size = UDim2.new(0, 250, 0, 50)
+buttonSekmeler.Position = UDim2.new(0, 25, 0, 120)
+buttonSekmeler.Text = "SEKMELERE GİT"
+buttonSekmeler.TextSize = 20
+buttonSekmeler.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonSekmeler.Parent = tabFrame
+buttonSekmeler.MouseButton1Click:Connect(function()
+    -- Sekmeler açılacak işlevsellik burada olacak
+    local newTabFrame = Instance.new("Frame")
+    newTabFrame.Size = UDim2.new(0, 300, 0, 500)
+    newTabFrame.Position = UDim2.new(0, 10, 0, 60)
+    newTabFrame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+    newTabFrame.BorderSizePixel = 0
+    newTabFrame.Parent = screenGui
+    newTabFrame.Active = true
+    newTabFrame.Draggable = true
+
+    -- Base Teleport butonunu ekleyelim
+    local buttonBaseTeleport = Instance.new("TextButton")
+    buttonBaseTeleport.Size = UDim2.new(0, 250, 0, 50)
+    buttonBaseTeleport.Position = UDim2.new(0, 25, 0, 60)
+    buttonBaseTeleport.Text = "BASE TELEPORT"
+    buttonBaseTeleport.TextSize = 20
+    buttonBaseTeleport.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+    buttonBaseTeleport.Parent = newTabFrame
+    buttonBaseTeleport.MouseButton1Click:Connect(function()
+        player.Character:SetPrimaryPartCFrame(CFrame.new(1522.4742431640625, 14.013042449951172, 774.0537719726562))
+    end)
+
+    -- Okk Base To butonunu ekleyelim
+    local buttonOkkBaseTo = Instance.new("TextButton")
+    buttonOkkBaseTo.Size = UDim2.new(0, 250, 0, 50)
+    buttonOkkBaseTo.Position = UDim2.new(0, 25, 0, 120)
+    buttonOkkBaseTo.Text = "OKK BASE TO"
+    buttonOkkBaseTo.TextSize = 20
+    buttonOkkBaseTo.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+    buttonOkkBaseTo.Parent = newTabFrame
+    buttonOkkBaseTo.MouseButton1Click:Connect(function()
+        player.Character:SetPrimaryPartCFrame(CFrame.new(1448.4964599609375, 14.297638893127441, -570.35791015625))
+    end)
+
+    -- Aziz Base TL butonunu ekleyelim
+    local buttonAzizBaseTL = Instance.new("TextButton")
+    buttonAzizBaseTL.Size = UDim2.new(0, 250, 0, 50)
+    buttonAzizBaseTL.Position = UDim2.new(0, 25, 0, 180)
+    buttonAzizBaseTL.Text = "ASİZ BASE TL"
+    buttonAzizBaseTL.TextSize = 20
+    buttonAzizBaseTL.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+    buttonAzizBaseTL.Parent = newTabFrame
+    buttonAzizBaseTL.MouseButton1Click:Connect(function()
+        player.Character:SetPrimaryPartCFrame(CFrame.new(1486.22509765625, 13.950504302978516, -1129.1136474609375))
+    end)
+
+    -- Diğer butonlar burada eklenebilir
+    -- Örneğin:
+    -- Civil area teleport, Denetim area teleport, No clip, animation actions vb.
+end)
+
+-- Yeni Sekme (TROLL)
+local trollTab = Instance.new("Frame")
+trollTab.Size = UDim2.new(0, 300, 0, 500)
+trollTab.Position = UDim2.new(0, 10, 0, 60)
+trollTab.BackgroundColor3 = Color3.new(0.25, 0.25, 0.25)
+trollTab.BorderSizePixel = 0
+trollTab.Parent = screenGui
+trollTab.Active = true
+trollTab.Draggable = true
+
+-- Detain Kaçma butonu
+local buttonDetainKacma = Instance.new("TextButton")
+buttonDetainKacma.Size = UDim2.new(0, 250, 0, 50)
+buttonDetainKacma.Position = UDim2.new(0, 25, 0, 60)
+buttonDetainKacma.Text = "DETAIN KACMA"
+buttonDetainKacma.TextSize = 20
+buttonDetainKacma.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonDetainKacma.Parent = trollTab
+buttonDetainKacma.MouseButton1Click:Connect(function()
+    player.Character:SetPrimaryPartCFrame(CFrame.new(3081.946044921875, 34.00847244262695, -251.81069946289062))
+    -- Noclip işlevselliği
+    -- player.Character.HumanoidRootPart.CanCollide = false
+end)
+
+-- Kardan Adam İçine Girme butonu
+local buttonKardanAdamIcineGir = Instance.new("TextButton")
+buttonKardanAdamIcineGir.Size = UDim2.new(0, 250, 0, 50)
+buttonKardanAdamIcineGir.Position = UDim2.new(0, 25, 0, 120)
+buttonKardanAdamIcineGir.Text = "KARDAN ADAM İCİNE GİRME"
+buttonKardanAdamIcineGir.TextSize = 20
+buttonKardanAdamIcineGir.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonKardanAdamIcineGir.Parent = trollTab
+buttonKardanAdamIcineGir.MouseButton1Click:Connect(function()
+    player.Character:SetPrimaryPartCFrame(CFrame.new(3083.131591796875, 30.821636199951172, -106.5598373413086))
+    -- Noclip etkinleştirilmesi
+    -- player.Character.HumanoidRootPart.CanCollide = false
+end)
+
+-- Özel Karakter V5
+local buttonOzelKarakter = Instance.new("TextButton")
+buttonOzelKarakter.Size = UDim2.new(0, 250, 0, 50)
+buttonOzelKarakter.Position = UDim2.new(0, 25, 0, 180)
+buttonOzelKarakter.Text = "ÖZEL KARETER V5"
+buttonOzelKarakter.TextSize = 20
+buttonOzelKarakter.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonOzelKarakter.Parent = trollTab
+buttonOzelKarakter.MouseButton1Click:Connect(function()
+    -- Animaasyonlar (Yürüyüş, yumruk, zip, vb.)
+    -- Yürüyüş animasyonu
+    local walkAnimation = Instance.new("Animation")
+    walkAnimation.AnimationId = "rbxassetid://11416062386"
+    player.Character.Humanoid:LoadAnimation(walkAnimation):Play()
+end)
+
+-- Yere Yatma butonu
+local buttonYereYatma = Instance.new("TextButton")
+buttonYereYatma.Size = UDim2.new(0, 250, 0, 50)
+buttonYereYatma.Position = UDim2.new(0, 25, 0, 240)
+buttonYereYatma.Text = "YERE YATMA"
+buttonYereYatma.TextSize = 20
+buttonYereYatma.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonYereYatma.Parent = trollTab
+buttonYereYatma.MouseButton1Click:Connect(function()
+    local layDownAnimation = Instance.new("Animation")
+    layDownAnimationlayDownAnimation.AnimationId = "rbxassetid://282574440"
+    player.Character.Humanoid:LoadAnimation(layDownAnimation):Play()
+end)
+
+-- Selam Ver Butonu
+local buttonSelamVer = Instance.new("TextButton")
+buttonSelamVer.Size = UDim2.new(0, 250, 0, 50)
+buttonSelamVer.Position = UDim2.new(0, 25, 0, 300)
+buttonSelamVer.Text = "SELAM VER"
+buttonSelamVer.TextSize = 20
+buttonSelamVer.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonSelamVer.Parent = trollTab
+buttonSelamVer.MouseButton1Click:Connect(function()
+    -- Sohbet mesajı ve animasyon
+    game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer("Selamün Aleyküm", "All")
+    local saluteAnimation = Instance.new("Animation")
+    saluteAnimation.AnimationId = "rbxassetid://252395365"
+    player.Character.Humanoid:LoadAnimation(saluteAnimation):Play()
+end)
+
+-- Ters Takla Atma Butonu
+local buttonTersTakla = Instance.new("TextButton")
+buttonTersTakla.Size = UDim2.new(0, 250, 0, 50)
+buttonTersTakla.Position = UDim2.new(0, 25, 0, 360)
+buttonTersTakla.Text = "TERS TAKLA ATMA"
+buttonTersTakla.TextSize = 20
+buttonTersTakla.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonTersTakla.Parent = trollTab
+buttonTersTakla.MouseButton1Click:Connect(function()
+    -- Zıplama ve takla animasyonu
+    player.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(0, 100, 0)
+    wait(0.5) -- Zıplama anı
+    -- Ters takla animasyonu
+    local flipAnimation = Instance.new("Animation")
+    flipAnimation.AnimationId = "rbxassetid://1095787060" -- Takla animasyon ID'si
+    player.Character.Humanoid:LoadAnimation(flipAnimation):Play()
+end)
+
+-- Oyun Ses Açma Butonu
+local buttonOyunSesAcma = Instance.new("TextButton")
+buttonOyunSesAcma.Size = UDim2.new(0, 250, 0, 50)
+buttonOyunSesAcma.Position = UDim2.new(0, 25, 0, 420)
+buttonOyunSesAcma.Text = "OYUN SES ACMA"
+buttonOyunSesAcma.TextSize = 20
+buttonOyunSesAcma.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonOyunSesAcma.Parent = trollTab
+buttonOyunSesAcma.MouseButton1Click:Connect(function()
+    -- Tüm oyun seslerini açmak için
+    game:GetService("SoundService"):SetVolume(1) -- Ses seviyesi 100%
+end)
+
+-- Herkese Daha Rahat Vurma Butonu
+local buttonHerkeseVurma = Instance.new("TextButton")
+buttonHerkeseVurma.Size = UDim2.new(0, 250, 0, 50)
+buttonHerkeseVurma.Position = UDim2.new(0, 25, 0, 480)
+buttonHerkeseVurma.Text = "HERKESE DAHA RAHAT VURMA"
+buttonHerkeseVurma.TextSize = 20
+buttonHerkeseVurma.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonHerkeseVurma.Parent = trollTab
+buttonHerkeseVurma.MouseButton1Click:Connect(function()
+    -- Hitbox scriptini yükleme
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-universal-head-hitbox-works-on-solara-13481"))()
+end)
+
+-- FACE DEĞİŞTİRME SEKME
+local faceDegistirmeTab = Instance.new("Frame")
+faceDegistirmeTab.Size = UDim2.new(0, 300, 0, 500)
+faceDegistirmeTab.Position = UDim2.new(0, 10, 0, 60)
+faceDegistirmeTab.BackgroundColor3 = Color3.new(0.25, 0.25, 0.25)
+faceDegistirmeTab.BorderSizePixel = 0
+faceDegistirmeTab.Parent = screenGui
+faceDegistirmeTab.Active = true
+faceDegistirmeTab.Draggable = true
+
+-- Subay Özel Yüzler Butonu
+local buttonSubayYuzler = Instance.new("TextButton")
+buttonSubayYuzler.Size = UDim2.new(0, 250, 0, 50)
+buttonSubayYuzler.Position = UDim2.new(0, 25, 0, 60)
+buttonSubayYuzler.Text = "SUBAY -ÖZEL YÜZLER-"
+buttonSubayYuzler.TextSize = 20
+buttonSubayYuzler.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonSubayYuzler.Parent = faceDegistirmeTab
+buttonSubayYuzler.MouseButton1Click:Connect(function()
+    -- Teleport ve geri dönüş işlevi
+    player.Character:SetPrimaryPartCFrame(CFrame.new(3150.768798828125, 35.76865768432617, -196.6469879150390))
+    wait(0.5)
+    player.Character:SetPrimaryPartCFrame(CFrame.new(1522.4742431640625, 14.013042449951172, 774.0537719726562)) -- Eski yeri
+end)
+
+-- KK Özel Face Butonu
+local buttonKKYuz = Instance.new("TextButton")
+buttonKKYuz.Size = UDim2.new(0, 250, 0, 50)
+buttonKKYuz.Position = UDim2.new(0, 25, 0, 120)
+buttonKKYuz.Text = "KK ÖZEL FACE"
+buttonKKYuz.TextSize = 20
+buttonKKYuz.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonKKYuz.Parent = faceDegistirmeTab
+buttonKKYuz.MouseButton1Click:Connect(function()
+    -- Teleport ve geri dönüş işlevi
+    player.Character:SetPrimaryPartCFrame(CFrame.new(1484.8157958984375, 14.350263595581055, 757.8386840820312))
+    wait(0.5)
+    player.Character:SetPrimaryPartCFrame(CFrame.new(1522.4742431640625, 14.013042449951172, 774.0537719726562)) -- Eski yeri
+end)
+
+-- KK Face Özel Butonu
+local buttonKKFaceOzel = Instance.new("TextButton")
+buttonKKFaceOzel.Size = UDim2.new(0, 250, 0, 50)
+buttonKKFaceOzel.Position = UDim2.new(0, 25, 0, 180)
+buttonKKFaceOzel.Text = "KK FACE ÖZEL"
+buttonKKFaceOzel.TextSize = 20
+buttonKKFaceOzel.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+buttonKKFaceOzel.Parent = faceDegistirmeTab
+buttonKKFaceOzel.MouseButton1Click:Connect(function()
+    -- Teleport ve geri dönüş işlevi
+    player.Character:SetPrimaryPartCFrame(CFrame.new(1484.8157958984375, 14.350263595581055, 757.8386840820312))
+    wait(0.5)
+    player.Character:SetPrimaryPartCFrame(CFrame.new(1522.4742431640625, 14.013042449951172, 774.0537719726562)) -- Eski yeri
+end)
+
+-- Sekmeler burada bitiyor...
