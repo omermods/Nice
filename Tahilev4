@@ -1,0 +1,199 @@
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- ScreenGui oluştur
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+
+-- Ana Frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 300, 0, 500) -- Daha büyük boyut
+mainFrame.Position = UDim2.new(0.5, -150, 0.5, -150)
+mainFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+mainFrame.BorderSizePixel = 2
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
+
+-- Başlık
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 30)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.Text = "TA SCRIPTS V7 🇹🇷"
+title.TextSize = 18
+title.TextColor3 = Color3.new(1, 1, 1)
+title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+title.Font = Enum.Font.SourceSansBold
+title.Parent = mainFrame
+
+-- Buton oluşturma fonksiyonu
+local function createButton(name, posY)
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(1, 0, 0, 25)
+    button.Position = UDim2.new(0, 0, 0, posY)
+    button.Text = name
+    button.TextSize = 16
+    button.Font = Enum.Font.SourceSans
+    button.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    button.TextColor3 = Color3.new(1, 1, 1)
+    button.Parent = mainFrame
+    return button
+end
+
+-- KIYAFET DEĞİŞTİRME Sekmesi
+local kiyafetSekmeButton = createButton("KIYAFET DEĞİŞTİRME", 35)
+local kiyafetFrame = Instance.new("Frame")
+kiyafetFrame.Size = UDim2.new(1, 0, 0, 100)
+kiyafetFrame.Position = UDim2.new(0, 0, 0, 60)
+kiyafetFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+kiyafetFrame.Visible = false
+kiyafetFrame.Parent = mainFrame
+
+kiyafetSekmeButton.MouseButton1Click:Connect(function()
+    kiyafetFrame.Visible = not kiyafetFrame.Visible
+end)
+
+-- NPC ÜSTÜ Butonları
+local npcButton1 = createButton("NPC ÜSTÜ", 0)
+npcButton1.Parent = kiyafetFrame
+npcButton1.MouseButton1Click:Connect(function()
+    print("NPC Üstü giysileri giydirildi!")
+    local character = player.Character
+    if character then
+        local shirt = character:FindFirstChildOfClass("Shirt")
+        if shirt then
+            shirt.ShirtTemplate = "http://www.roblox.com/asset/?id=5023843600"  -- Üst giysi ID
+        end
+        local pants = character:FindFirstChildOfClass("Pants")
+        if pants then
+            pants.PantsTemplate = "http://www.roblox.com/asset/?id=5023848330"  -- Pantolon ID
+        end
+    end
+end)
+
+-- Yeni Sekme: TROLL
+local trollSekmeButton = createButton("TROLL", 135)
+local trollFrame = Instance.new("Frame")
+trollFrame.Size = UDim2.new(1, 0, 0, 150)
+trollFrame.Position = UDim2.new(0, 0, 0, 160)
+trollFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+trollFrame.Visible = false
+trollFrame.Parent = mainFrame
+
+trollSekmeButton.MouseButton1Click:Connect(function()
+    trollFrame.Visible = not trollFrame.Visible
+end)
+
+-- BO Butonu
+local boButton = createButton("BO", 0)
+boButton.Parent = trollFrame
+boButton.MouseButton1Click:Connect(function()
+    print("Bütün tool'lar alındı!")
+    for _, tool in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+        if tool:IsA("Tool") then
+            tool:Clone().Parent = player.Backpack
+        end
+    end
+end)
+
+-- DAHA RAHAT ADAM VURMA Butonu
+local rahatButton = createButton("DAHA RAHAT ADAM VURMA", 35)
+rahatButton.Parent = trollFrame
+rahatButton.MouseButton1Click:Connect(function()
+    print("Blok oluşturuluyor!")
+    local part = Instance.new("Part")
+    part.Size = Vector3.new(5, 5, 5)
+    part.Position = Vector3.new(2641.771240234375, 447.9798889160156, -562.051025390625)
+    part.Anchored = true
+    part.Parent = workspace
+    local character = player.Character
+    if character then
+        character.HumanoidRootPart.CFrame = CFrame.new(part.Position + Vector3.new(0, 5, 0))
+    end
+end)
+
+-- TROLL .D Butonu
+local trollDButton = createButton("TROLL .D", 70)
+trollDButton.Parent = trollFrame
+trollDButton.MouseButton1Click:Connect(function()
+    print("Troll D başladığı yere teleport olundu!")
+    local character = player.Character
+    if character then
+        character.HumanoidRootPart.CFrame = CFrame.new(2799.712890625, 33.880859375, -398.2894287109375)
+        -- Yani bloğu geçme işlevi burada yapılacak (yapısal geçiş için model veya daha fazla kod gerekebilir)
+    end
+end)
+
+-- Yeni Sekme: FARM
+local farmSekmeButton = createButton("FARM", 185)
+local farmFrame = Instance.new("Frame")
+farmFrame.Size = UDim2.new(1, 0, 0, 250)
+farmFrame.Position = UDim2.new(0, 0, 0, 210)
+farmFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+farmFrame.Visible = false
+farmFrame.Parent = mainFrame
+
+farmSekmeButton.MouseButton1Click:Connect(function()
+    farmFrame.Visible = not farmFrame.Visible
+end)
+
+-- ÇÖL FARM Butonu
+local colFarmButton = createButton("ÇÖL FARM", 0)
+colFarmButton.Parent = farmFrame
+colFarmButton.MouseButton1Click:Connect(function()
+    print("Çöl Farm başlatıldı!")
+    local character = player.Character
+    if character then
+        character.HumanoidRootPart.CFrame = CFrame.new(2641.771240234375, 447.9798889160156, -562.051025390625)
+    end
+end)
+
+-- TEPE KÖY FARM Butonu
+local tepeKoyFarmButton = createButton("TEPE KÖY FARM", 35)
+tepeKoyFarmButton.Parent = farmFrame
+tepeKoyFarmButton.MouseButton1Click:Connect(function()
+    print("Tepe Köy Farm başlatıldı!")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Xentyyy/TA_OP_Farm/refs/heads/main/OP_V3"))()
+end)
+
+-- TEPEKÖY FARM +BENİM Butonu
+local tepeKoyFarmBenimButton = createButton("TEPEKÖY FARM +BENİM", 70)
+tepeKoyFarmBenimButton.Parent = farmFrame
+tepeKoyFarmBenimButton.MouseButton1Click:Connect(function()
+    print("Farm başlatıldı!")
+    local character = player.Character
+    if character then
+        local farmLocations = {
+            Vector3.new(1253.9066162109375, 3.5280237197875977, -1227.736083984375),
+            Vector3.new(1739.155029296875, 34.481685638427734, -1168.2808837890625),
+            Vector3.new(1901.484375, 34.886539459228516, 20.9510555267334),
+            Vector3.new(2351.024658203125, 35.85512924194336, -1459.59033203125)
+        }
+        -- Teleport işlemi burada gerçekleşiyor
+        for _, loc in ipairs(farmLocations) do
+            character.HumanoidRootPart.CFrame = CFrame.new(loc)
+            wait(29)  -- 29 saniye bekle
+        end
+    end
+end)
+
+-- DAHA İYİ FARM Butonu
+local dahaIyiFarmButton = createButton("DAHA İYİ FARM", 105)
+dahaIyiFarmButton.Parent = farmFrame
+dahaIyiFarmButton.MouseButton1Click:Connect(function()
+    print("Daha İyi Farm başlatıldı!")
+    local character = player.Character
+    local farmLocations = {
+        Vector3.new(1421.441650390625, 3.099996328353882, 447.8666076660156),
+        Vector3.new(1739.155029296875, 34.481685638427734, -1168.2808837890625),
+        Vector3.new(2351.024658203125, 35.85512924194336, -1459.59033203125),
+        Vector3.new(1329, 3.0999953746795654, -2345)
+    }
+    -- Loop işlemi burada gerçekleşiyor
+    while true do
+        for _, loc in ipairs(farmLocations) do
+            character.HumanoidRootPart.CFrame = CFrame.new(loc)
+            wait(29)  -- 29 saniye bekle
+        end
+    end
+end)
